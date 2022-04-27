@@ -109,6 +109,10 @@ app.get('/', (req, res) => {
     res.send('server is running')
 });
 
+app.get('/hero', (req, res) => {
+    res.send('heroku updated')
+})
+
 app.listen(port, () => {
     console.log('listening to port', port)
 })
