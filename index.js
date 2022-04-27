@@ -19,12 +19,12 @@ function verifyjwt(req, res, next) {
     const token = authHeader.split(' ')[1];
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
         if (err) {
-            res.status(403).send({ message: 'forbidden access' })
+            return res.status(403).send({ message: 'forbidden access' })
         }
         console.log('decoded', decoded);
         req.decoded = decoded;
+        next();
     })
-    next();
 }
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.ael70.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
